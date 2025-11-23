@@ -1,0 +1,32 @@
+# ansible-playbook -c local playbook.yml --extra-vars "ntp_server=1.2.3.4" --tags play2
+- name: Play1
+  hosts: localhost
+  gather_facts: false
+  vars:
+    ntp_server: 10.1.1.1
+  tasks:
+    - debug:
+        var: ntp_server
+- name: Play2
+  hosts: localhost
+  tags: play2
+  gather_facts: no
+  tasks:
+    - debug:
+        var: ntp_server
+    - debug:
+        msg: 'Hello from Ansible!'
+    - debug:
+        var: ansible_facts
+
+- name: Play3
+  hosts: localhost
+  tags: play3
+  vars:
+    car_model: 'BMW M3'
+    country_name: 'the USA'
+    title: 'Systems Engineer'
+  tasks:
+    - command: echo My car is {{ car_model }}
+    - command: echo I live in {{ country_name }}
+    - command: echo I work as a {{ title }}
