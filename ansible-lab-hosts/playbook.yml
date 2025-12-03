@@ -1,0 +1,13 @@
+---
+# to prepare:
+# ssh-keygen -f "/home/lwang/.ssh/known_hosts" -R "[localhost]:2222"
+# ssh ansible@localhost -p 2222
+# ansible-playbook -i hosts.ini playbook.yml
+- name: Configure web server
+  hosts: webservers        # This needs to match a group in your inventory
+  become: true             # Because we install packages and modify /var/www
+
+  roles:
+    - role: apache
+      vars:
+        apache_index_content: "Hello from Lei's web server!"

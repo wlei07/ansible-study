@@ -1,0 +1,12 @@
+services:
+  ansible-target:
+    image: ubuntu:22.04
+    container_name: ansible-target
+    ports:
+      - "2222:22"        # Host port 2222 → container SSH
+      - "48080:80"
+    #tty: true
+    #stdin_open: true
+    volumes:
+      - ./init.sh:/init.sh
+    entrypoint: ["/bin/bash", "/init.sh"]

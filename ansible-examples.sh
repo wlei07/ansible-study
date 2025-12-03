@@ -10,3 +10,6 @@ ansible-playbook ./playbook.yml --check
 ansible-playbook ./playbook.yml --check --diff
 
 ansible-lint ./playbook.yml
+
+# create an ansible role:
+ansible-galaxy init apache
